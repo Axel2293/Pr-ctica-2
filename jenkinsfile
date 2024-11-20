@@ -1,0 +1,39 @@
+pipeline {
+    agent {
+        docker {
+            image 'eclipse-temurin:21-jdk-alpine'
+        }
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Hacer checkout al repo
+                checkout scm
+            }
+        }
+
+        stage('Compile Java') {
+            steps {
+                script {
+                    // Compilar
+                    sh 'mkdir -p bin'
+                    sh 'javac -d bin src/**/*.java'
+                }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                // Archiva los binarios generados
+                archiveArtifacts artifacts: 'bin/**/*', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
