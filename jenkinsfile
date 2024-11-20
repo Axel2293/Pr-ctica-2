@@ -14,7 +14,7 @@ pipeline {
                 script {
                     // Compilar
                     sh 'mkdir -p bin'
-                    sh 'javac -d bin src/**/*.java'
+                    sh 'javac -d bin src/*.java'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Archive Artifacts') {
             steps {
                 // Archiva los binarios generados
-                archiveArtifacts artifacts: 'bin/**/*', fingerprint: true
+                archiveArtifacts artifacts: 'bin/**', fingerprint: true
             }
         }
     }
