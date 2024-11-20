@@ -1,5 +1,4 @@
 name: Notificación de email cuando hay cambios
-
 on:
   push:
     branches:
@@ -10,19 +9,15 @@ on:
 jobs:
   send_email:
     runs-on: ubuntu-latest
-
     steps:
     - name: Enviar notificación por email
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.gmail.com
         server_port: 587
-        username: ${{ secrets.USERNAME_SMTP }}
-        password: ${{ secrets.PASS_SMTP }}
-        subject: |
-          Cambios subidos a rama ${{ github.ref_name }}
-        body: |
-          Se realizaron cambios en la rama: ${{ github.ref_name }}
-          Repo: ${{ github.repository }}
+        username: ${{secrets.USERNAME_SMTP }}
+        password: ${{secrets.PASS_SMTP }}
+        subject: "Hubo cambios en la rama ${{ github.ref_name }}"
+        body: "Se realizaron cambios en la rama: ${{ github.ref_name }}"
         to: axelwa@outlook.com
         from: Practica 2 Bot
