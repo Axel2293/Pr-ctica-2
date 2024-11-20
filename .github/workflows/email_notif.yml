@@ -19,5 +19,5 @@ jobs:
         password: ${{secrets.PASS_SMTP }}
         subject: "Hubo cambios en la rama ${{ github.ref_name }}"
         body: "Se realizaron cambios en la rama: ${{ github.ref_name }}"
-        to: axelwa@outlook.com
+        to: axelwa@outlook.com,emiliano.fh.1523@gmail.com
         from: Practica 2 Bot
